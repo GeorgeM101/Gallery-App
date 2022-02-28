@@ -5,7 +5,7 @@ from .models import Location, Category, Image
 from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
-def home(request):
+def index(request):
     try:
         images = Image.objects.all()
         category = Category.objects.all()
