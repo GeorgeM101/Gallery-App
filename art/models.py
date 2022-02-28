@@ -17,6 +17,7 @@ class Location(models.Model):
 
 class Image(models.Model):
     picture = models.CharField('image')
+    name = models.CharField(max_length = 30)
     description = models.TextField()
     location = models.ForeignKey(Location, on_delete=models.CASCADE, default='')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default='')
@@ -26,6 +27,9 @@ class Image(models.Model):
     
     def save_image(self):
         self.save()
+
+    def delete_image(self):
+        self.delete()
 
     @classmethod
     def search_category(cls,search_term):
