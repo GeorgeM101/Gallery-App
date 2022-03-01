@@ -1,20 +1,21 @@
 ## FINEART GALLERY
+
 Developer: George Mboya
-Project Description
-A web application where users can add blogs,comment and delete posts.
 
-User Stories
-A user should be able to:
+### Project Description
 
-Create an account
-Comment on a post
-Add a post
-Setup Instructions
+A website where users can be able to view showcased images based on location and category.
+
+### Technology used
+
+- Python 3.8
+- Django
+- Postgresql
+
+### Setup Instructions
+
 Python 3
-Running the Application
-To run the application, in your terminal:
 
-python3.8
 License
 George Mboya
 
