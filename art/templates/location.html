@@ -1,53 +1,47 @@
-{% include "base.html" %} {% load static %} {% block styles %}
-
-<link rel="stylesheet" href="{% static 'css/location.css' %}" />
-
-{% endblock %} {% block content %}
+{% extends 'base.html' %}
+{% block content %}
 <div class="container">
-  {% if location %}
+    <h2> Gallery</h2>
+    <hr>
 
-  <h2 style="text-decoration: none">Images In {{message}} Location</h2>
+    {% if location_images %}
+    <div class="card-columns">
 
-  {% for items in location %}
+        {% for image in location_images %}
 
-  <div class="row">
-    <div class="col-sm-9 col-md-10 col-lg-10">
-      <div class="jumbotron text-center hoverable p-4">
-        <div class="row">
-          <div class="col-md-4 offset-md-1 mx-3 my-3">
-            <!-- image -->
-            <div class="view overlay">
-              <img
-                src="{{ items.picture.url }}"
-                class="img-fluid"
-                alt="{{ items.pic_name }}"
-              />
-              <a>
-                <div class="mask rgba-white-slight"></div>
-              </a>
-            </div>
-          </div>
-          <div class="col-md-7 text-md-left ml-3 mt-3">
-            <!-- Excerpt -->
-            <a href="#!" class="teal-text">
-              <h6 class="h6 pb-1">
-                <i class="fas fa-grip-horizontal"></i> {{ items.pic_category }}
-              </h6>
-            </a>
-
-            <h4 class="h4 mb-4">{{ items.pic_name }}</h4>
-
-            <p class="font-weight-normal">{{ items.description }}</p>
-            <p class="font-weight-normal">
-              Location <a><strong>{{ items.location }}</strong></a
-              >, {{ items.date }}
-            </p>
-          </div>
+        <div class="card" data-toggle="modal" data-target="#{{image.id}}">
+            <img src="{{image.image.url}}" alt="{{image.name}}" class="card-img">
         </div>
-      </div>
-    </div>
-  </div>
+        <div class="modal fade " id="{{image.id}}" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content modalcard">
+                    <div class="modal-header">
+                        <h5 class="modal-title d-block mx-auto" id="exampleModalLongTitle">{{image.name}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="{{image.image.url}}" alt="{{image.name}}" class="img-fluid">
+                        <p>{{image.description}}</p>
+                        <span class="btn btn-sm btn-outline-success">{{image.category | title}}</span> <a href="/location/{{image.location}}" class="btn btn-sm btn-outline-info">{{image.location}}</a>
+                    </div>
+                    <div class="modal-footer">
+                        <input class="form-control input-lg" type="text"
+                               value="{{image.image.url}}" id="{{image.id}}.url">
+                        <button class="btn btn-success btn-sm" onclick="copyLink('{{image.id}}.url')">Copy</button>
+                        <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-  {% endfor %} {% endif %}
+
+        {% endfor %}
+    </div>
+    {% endif %}
+
 </div>
 {% endblock %}

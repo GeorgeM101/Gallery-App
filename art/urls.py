@@ -9,5 +9,3 @@ urlpatterns=[
     path('location/<location>/', views.view_by_location, name='locationPage'), 
 ]
 
-if settings.DEBUG:
-    urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
