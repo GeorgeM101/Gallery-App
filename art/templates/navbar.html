@@ -1,50 +1,35 @@
 <!--Navbar -->
 
 <nav class="mb-1 navbar navbar-expand-lg bg-dark">
-  <a class="navbar-brand" href="{% url 'mainPage' %}">FINEART GALLERY</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarSupportedContent-333"
-    aria-controls="navbarSupportedContent-333"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" id="home" href="/">Home </a>
-      </li>
+    <a class="navbar-brand" href="{% url 'mainPage' %}">Kiliga_photography</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+      aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" id="home" href="/">Home
+          </a>
+        </li>
 
-      <li class="nav-item dropdown">
-        {% if request.path == "/" %}
+        <li class="nav-item dropdown">
+          
+          {% if request.path == "/" %}
+            
+            
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" id="loc" >Locations
+          </a>
+          <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+            {% for items in location %}
+            <a class="dropdown-item" href="/location/{{ items.name }}">{{ items.name }}</a>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-        <a
-          class="nav-link dropdown-toggle"
-          id="navbarDropdownMenuLink-333"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-          id="loc"
-          >Locations
-        </a>
-        <div
-          class="dropdown-menu dropdown-default"
-          aria-labelledby="navbarDropdownMenuLink-333"
-        >
-          {% for items in art_location %}
-          <a class="dropdown-item" href="/location/{{ items.name }}"
-            >{{ items.name }}</a
-          >
-          {% endfor %}
-        </div>
-        {% endif %}
-      </li>
-    </ul>
-  </div>
-</nav>
-
-<!--Navbar -->
+  <!--Navbar -->
